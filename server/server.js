@@ -1,29 +1,52 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/TodoApp');
+mongoose.Promise = global.Promise
+mongoose.connect('mongodb://localhost:27017/TodoApp')
 
-var Todo = mongoose.model('Todo', {
-    text: {
-        type: String
-    },
-    completed: {
-        type: Boolean
-    },
-    completedAt: {
-        type: Number
-    }
-});
+// var Todo = mongoose.model('Todo', {
+//     text: {
+//         type: String,
+//         required: true,
+//         minlength: 2,
+//         trim: true
+//     },
+//     completed: {
+//         type: Boolean,
+//         default: false
+//     },
+//     completedAt: {
+//         type: Number,
+//         default: null
+//     }
+// });
 
+// var newTodo = new Todo({
+//     text: 'Edit This Meme'
+// });
 
-var newTodo = new Todo({
-    text: 'Work on 5anime',
-    completed: false,
-    completedAt: 4000
-});
+// newTodo.save().then((doc) => {
+//     console.log('Saved todo', doc);
+// }, (e) => {
+//     console.log('unable to save todo', doc);
+// });
 
-newTodo.save().then((doc) => {
-    console.log('Saved todo', doc);
+// User
+// email - require it - trim it - set type - set min length of 1
+var user = mongoose.model('User', {
+	email: {
+		type: String,
+		required: true,
+		trim: true,
+		minlength: 1
+	}
+})
+
+var newUser = new user({
+	email: ''
+})
+
+newUser.save().then((doc) => {
+	console.log('Created new User', doc)
 }, (e) => {
-    console.log('unable to save todo', doc);
-});
+	console.log('Unable to create new user', e)
+})
