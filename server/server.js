@@ -25,3 +25,5 @@ app.post('/todos', (req, res) => {
 app.listen(3000, () => {
 	console.log('started on port meme')
 })
+
+module.exports = {app};
